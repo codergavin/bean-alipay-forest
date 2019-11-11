@@ -1,10 +1,14 @@
 # AlipayForest
 支付宝蚂蚁森林
+
 AlipayForest.js中文版本的蚂蚁森林
 AlipayForestUK.js英文版蚂蚁森林
 
+把autojs.4.0.1 Beta.apk安装到手机上面
 
-需要开启无障碍服务。
+打开Auto.js应用程序，开启无障碍服务。
+
+点击右下角“+”，点击“导入”脚本文件，AlipayForest.js或者AlipayForestUK.js文件。
 
 点击运行，第一次使用需要确认赋予截屏权限。
 

@@ -67,15 +67,6 @@ if (time()) {
 toast("收取完成");
 back(); //先返回到个人界面获取能量数目
 //获取当前能量 新版本没有ID 故不可用
-// var amountOfE2 = idContains("tree_energy").findOne().text();
-// var amountReg = /.*(?=g)/;
-// amountOfE1 = amountOfE1.match(amountReg);
-// amountOfE2 = amountOfE2.match(amountReg);
-// amountOfE1 = parseInt(amountOfE1);
-// amountOfE2 = parseInt(amountOfE2);
-// var extra = amountOfE2 - amountOfE1;
-// toast("收取了 " + extra + " g能量");
-// log("收取了 " + extra + " g能量")
 while (!className("android.widget.TextView").text("首页").exists()) {
     back();
     sleep(1000);
@@ -119,8 +110,7 @@ function EnterAndCollect(x, y) {
         };
     }
     log("收取完成，返回");
-    idContains("h5_tv_nav_back").findOne().click();
-	back();
+    back();
 }
 
 // 时间判断
@@ -172,59 +162,6 @@ function collectInRanklistNew() {
             EnterAndCollect(width / 2, coordinate[i] + 10);
         }
 
-
-        while (!textContains("kg").exists()) {
-            sleep(100);
-        }
-        scrollDown();
-    }
-}
-
-//在排行榜中收取方法(旧)
-function collectInRanklist() {
-    while (!textContains("没有更多了").exists()) {
-        sleep(200); //延时以防止截图错误
-        var img = captureScreen();
-        var x = width - 5;
-        var y = 0;
-        var str = ''; //记录颜色判断结果
-        while (y < height - 100) {
-            if (images.detectsColor(img, "#30BF6C", x, y, 8))
-                str += '1';
-            else
-                str += '0';
-            y++;
-        }
-
-
-        var reg = /1?0{50,}(?=1)/g;
-        var coordinate = new Array(); //记录非绿色区间
-
-        while (true) {
-            var arr = reg.exec(str);
-            if (arr)
-                coordinate.push(arr.index, arr.index + arr[0].length);
-            else break;
-        }
-
-        log(coordinate);
-
-
-        var i = 1;
-        var selectedArr = new Array(); //记录最后判断成功的纵坐标
-        while (i < coordinate.length - 1) {
-            // 对i到i+1内进行判断
-            var whiteReg = /1{30,}0{1,5}1*/;
-            var testResult = whiteReg.test(str.substring(coordinate[i], coordinate[i + 1]));
-            if (testResult == true) selectedArr.push(coordinate[i]);
-            i += 2;
-        }
-        // 判断结束，开始依据selectedArr点击收取
-        //length先提取，避免因判错造成死循环
-        var tmp_length = selectedArr.length;
-        for (var j = 0; j < selectedArr.length; j++) {
-            EnterAndCollect(width / 2, selectedArr[j] + 10)
-        }
 
         while (!textContains("kg").exists()) {
             sleep(100);
